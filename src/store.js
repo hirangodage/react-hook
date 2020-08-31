@@ -12,15 +12,19 @@ const baseMember = {
 const [useMemberStore] = create(set => ({ 
     count: 0,
     name:"test",
+    items:["test1","test2"],
     member:baseMember,
+    members:[],
   increase: (i) =>  set(state =>producer(state,df=>{
-      df.member.age=df.member.age+1;
-      df.count = df.count+1;
+      df.member.age=df.member.age+i;
+      df.count = df.count+i;
 
 }))  ,
   reset: () => set({ count: 0, name:"test rebump", member:baseMember }),
+  addItem:(item)=>set(state =>producer(state,df=>{df.items.push(item)})) ,
   saveMember: (name)=>
-      set(state =>producer(state,df=>{df.member.Name=name}))   
+      set(state =>producer(state,df=>{df.member.Name=name}))   ,
+  
 }))
 
 export default useMemberStore;
